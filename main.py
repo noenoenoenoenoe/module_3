@@ -204,7 +204,7 @@ while True:
 
 """
 # Exercise 5: Combining Strings and Loops
-
+"""
 # Solve problems that involve both string manipulation and loops.
 # TODO: Create a function that counts the occurrence of each vowel in a string
 def comptage_voyelles(text):
@@ -224,14 +224,109 @@ resultats = comptage_voyelles("Carla va voir Nico au parloir")
 for voyelle, occ in resultats.items():
     print(f"{voyelle:<10} {occ:<10}")
 
+"""
 # TODO: Implement a simple Caesar cipher (shift each letter by a fixed amount)
+# Programme : Chiffrement de César simple
+"""
+# Demande à l'utilisateur un message et un décalage
+message = input("Entre ton message à chiffrer : ")
+shift = int(input("Entre le décalage (ex : 3) : "))
 
+# Variable pour stocker le texte chiffré
+cipher_text = ""
+
+# Boucle sur chaque caractère du message
+for char in message:
+    # Vérifie si c'est une lettre majuscule
+    if char.isupper():
+        cipher_text += chr((ord(char) - 65 + shift) % 26 + 65)
+    # Vérifie si c'est une lettre minuscule
+    elif char.islower():
+        cipher_text += chr((ord(char) - 97 + shift) % 26 + 97)
+    # Si ce n'est pas une lettre (ex: espace, chiffre, ponctuation), on ne la modifie pas
+    else:
+        cipher_text += char
+
+# Affiche le message chiffré
+print("Message chiffré :", cipher_text)
+"""
+"""
 # TODO: Create a function that generates the NATO phonetic alphabet representation of a word
+# Dictionnaire de l'alphabet OTAN
+alphabet_nato = {
+    'A': 'Alfa', 'B': 'Bravo', 'C': 'Charlie', 'D': 'Delta',
+    'E': 'Echo', 'F': 'Foxtrot', 'G': 'Golf', 'H': 'Hotel',
+    'I': 'India', 'J': 'Juliett', 'K': 'Kilo', 'L': 'Lima',
+    'M': 'Mike', 'N': 'November', 'O': 'Oscar', 'P': 'Papa',
+    'Q': 'Quebec', 'R': 'Romeo', 'S': 'Sierra', 'T': 'Tango',
+    'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'X-ray',
+    'Y': 'Yankee', 'Z': 'Zulu'
+}
 
+# Fonction pour convertir un mot en alphabet phonétique
+def to_nato(word):
+    word = word.upper()
+    phonetic_word = []
+
+    for letter in word:
+        if letter in alphabet_nato:
+            phonetic_word.append(alphabet_nato[letter])
+        else:
+            phonetic_word.append(letter)  # garder les espaces, chiffres, etc.
+
+    return " ".join(phonetic_word)
+
+# Programme principal
+mot = input("Entre un mot : ")
+print("Alphabet phonétique :", to_nato(mot))
+"""
+"""
 # TODO: Implement a function that checks if a string is a palindrome
+# Fonction pour vérifier si une chaîne est un palindrome
+def Palindrome(text):
+    # On met tout en minuscules et on retire les espaces
+    cleaned_text = ''.join(char.lower() for char in text if char.isalnum())
+    
+    # On compare le texte à sa version inversée
+    return cleaned_text == cleaned_text[::-1]
 
+# Programme principal
+mot = input("rentre un mot/une phrase\n")
+
+if Palindrome(mot):
+    print("palindrome détecté wsh ✅")
+else:
+    print("papalindrome ❌")
+"""
 # Test each function with sample inputs and print the results
 # TODO: Create variables for name, age, and height
 
+nom = "noé"
+âge = 25
+taille = 1.75
+
+# Affichage simple
+print("Nom :", nom)
+print("Âge :", âge)
+print("Taille :", taille, "m")
+
+# Exemple de fonctions à tester
+def greet(person):
+    return f"slt, {person} !"
+
+def years_until_100(current_age):
+    return 100 - current_age
+
+def convert_height_to_cm(meters):
+    return meters * 100
+
+
+# Tests des fonctions avec les variables
+print("\n--- Tests des fonctions ---\n")
+print(greet(nom))
+print("Il te reste", years_until_100(âge), "ans avant d’avoir 100 ans 🎂")
+print("Ta taille en centimètres est :", convert_height_to_cm(taille), "cm")
 
 # TODO: Use the .format() method to create a sentence with these variables
+phrase = "slt c {}, j'ai {} et je mesure {}m".format(nom, âge, taille)
+print(phrase)
